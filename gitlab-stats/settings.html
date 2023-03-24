@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 0.5em;
+        }
+
+        form * {
+            margin: 0.5em;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <label for="server">Gitlab server</label>
+        <input type="text" id="server" name="server" placeholder="https://gitlab.company.com" />
+        <label for="token">Gitlab token</label>
+        <input type="text" id="token" name="token" />
+        <button type="submit">Save</button>
+    </form>
+    <script src="settings.js"></script>
+</body>
+
+</html>
