@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./icons/gitlab-max.png" height="90px"/>
+  <img src="./images/icon.png" height="90px"/>
   <h1>Gitlab-stats</h1>
 </div>
 
