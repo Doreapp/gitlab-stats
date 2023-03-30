@@ -19,6 +19,9 @@ jobs:
           npm install
           ./install.sh
       - name: Build and sign XPI
+        env: 
+          WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
+          WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
         run: |
           tag_name=$(echo ${{ github.ref }} | sed 's/refs\/tags\///')
           sed -i "s/{{VERSION}}/$tag_name/g" gitlab-stats/manifest.json
