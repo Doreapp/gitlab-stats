@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="dashboard.css"/>
+    <title>Gitlab stats</title>
+</head>
+
+<body>
+    <nav id="navbar">
+        <span class="title">Gitlab Stats</span>
+        <ul class="menu">
+            <li id="option-settings" class="menu-option">Settings</li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="merge-request-statistics" class="statistics" style="display: none;">
+            Merge requests assigned:
+            <ul class="statistics-list">
+                <li id="merge-request-opened">Opened: <span id="merge-request-opened-value"></span></li>
+                <li id="merge-request-merged">Merged: <span id="merge-request-merged-value"></span></li>
+                <li id="merge-request-closed">Closed: <span id="merge-request-closed-value"></span></li>
+                <li id="merge-request-unknown" style="display: none;">Unknown: <span id="merge-request-unknown-value"></span></li>
+            </ul>
+        </section>
+    </main>
+
+    <dialog id="settings-container">
+        <form id="settings">
+            <label for="server">Gitlab server</label>
+            <input type="text" id="server" name="server" placeholder="https://gitlab.company.com" />
+            <label for="token">Gitlab token</label>
+            <input type="text" id="token" name="token" />
+            <button type="submit">Save</button>
+        </form>
+    </dialog>
+    <script src="gitlab.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

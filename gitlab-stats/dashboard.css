@@ -1,0 +1,83 @@
+/****************
+COLOR PALETTE
+
+dad7cd
+a3b18a
+588157
+3a5a40
+344e41
+
+****************/
+
+:root {
+    --gray: #a4a3a8;
+    --gray-dark: #dcdcde;
+    --primary: #007bff;
+    --secondary: #333238;
+    --success: #2da160;
+    --info: #428fdc;
+    --warning: #c17d10;
+    --danger: #ec5941;
+    --light: #434248;
+    --dark: #dcdcde;
+
+    --gray-50: #333238;
+    --gray-100: #434248;
+    --gray-200: #535158;
+    --gray-300: #626168;
+    --gray-400: #737278;
+    --gray-500: #89888d;
+    --gray-600: #a4a3a8;
+    --gray-700: #bfbfc3;
+    --gray-800: #dcdcde;
+    --gray-900: #ececef;
+    --gray-950: #fbfafd;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0;
+    margin: 0;
+    background-color: #1f1e24;
+    color: var(--gray-900);
+}
+
+nav {
+    padding: 0.75em;
+    background-color: var(--gray-50);
+    box-shadow: 0 1px 0 0 var(--gray-100);
+    display: flex;
+    place-items: center;
+}
+
+nav .title {
+    flex: 1;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+nav ul {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    list-style: none;
+    cursor: pointer;
+}
+
+section.statistics {
+    color: var(--white);
+    margin: 1em;
+    display: inline-block;
+    background: #29282d;
+    padding: 1em;
+    border-radius: 3px;
+    border: 1px solid #333238;
+}
+
+section.statistics ul {
+    list-style: none;
+    padding: 0;
+}
