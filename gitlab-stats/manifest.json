@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Gitlab statistics",
-  "version": "0.0.1",
+  "version": "{{VERSION}}",
   "description": "Add statistics to Gitlab projects",
   "icons": {
     "48": "icons/gitlab_48.png"

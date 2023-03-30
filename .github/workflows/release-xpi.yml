@@ -1,0 +1,36 @@
+name: Build and Release XPI
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Node.js and NPM
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+      - name: Install dependences
+        run: |
+          npm install
+          ./install.sh
+      - name: Build and sign XPI
+        run: |
+          tag_name=$(echo ${{ github.ref }} | sed 's/refs\/tags\///')
+          sed -i "s/{{VERSION}}/$tag_name/g" gitlab-stats/manifest.json
+          npm run sign
+          mv web-ext-artifacts/*.xpi addon.xpi
+      - name: Upload XPI to GitHub Release
+        id: upload_release_asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./addon.xpi
+          asset_name: addon.xpi
+          asset_content_type: application/octet-stream
