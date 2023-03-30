@@ -14,12 +14,21 @@ const Gitlab = ({ token, host = "https://gitlab.com" }) => {
         return await response.json()
     }
 
-    const projectIssues =  async ({ projectId }) => {
+    const issues = async ({ projectId=undefined, assigneeId=undefined }) => {
+        let baseUrl = ""
+        if (projectId) {
+            baseUrl += `/projects/${projectId}`
+        }
+        baseUrl += "/issues"
+        let queryArguments = ["per_page=100"]
+        if (assigneeId) {
+            queryArguments.push(`assignee_id=${assigneeId}`)
+        }
         let lastResponseCount = 100
         let results = []
         let page = 1
         while (lastResponseCount === 100) {
-            const issues = await request({path: `/projects/${projectId}/issues?page=${page}&per_page=100`})
+            const issues = await request({path: `${baseUrl}?page=${page}&` + queryArguments.join("&")})
             lastResponseCount = issues.length
             results = results.concat(issues)
             page++
@@ -27,22 +36,36 @@ const Gitlab = ({ token, host = "https://gitlab.com" }) => {
         return results
     }
 
-    const projectMergeRequests =  async ({ projectId }) => {
+    const mergeRequests = async ({ projectId=undefined, assigneeId=undefined }) => {
+        let baseUrl = ""
+        if (projectId) {
+            baseUrl += `/projects/${projectId}`
+        }
+        baseUrl += "/merge_requests"
+        let queryArguments = ["per_page=100"]
+        if (assigneeId) {
+            queryArguments.push( `assignee_id=${assigneeId}`)
+        }
         let lastResponseCount = 100
         let results = []
         let page = 1
         while (lastResponseCount === 100) {
-            const issues = await request({path: `/projects/${projectId}/merge_requests?page=${page}&per_page=100`})
-            lastResponseCount = issues.length
-            results = results.concat(issues)
+            const mergeRequests = await request({path: `${baseUrl}?page=${page}&` + queryArguments.join("&")})
+            lastResponseCount = mergeRequests.length
+            results = results.concat(mergeRequests)
             page++
         }
         return results
+    }
+
+    const me = async () => {
+        return await request({path: "/user"})
     }
 
     return {
         request,
-        projectIssues,
-        projectMergeRequests
+        issues,
+        mergeRequests,
+        me
     }
 }

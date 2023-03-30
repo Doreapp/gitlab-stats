@@ -83,7 +83,7 @@ const buildIssuesStatistics = (dialog, issues) => {
  */
 const populateDialog = (dialog, api, projectId) => {
     dialog.innerText = ""
-    api.projectIssues({projectId})
+    api.issues({projectId})
         .then(issues => {
             buildIssuesStatistics(dialog, issues)
         })
